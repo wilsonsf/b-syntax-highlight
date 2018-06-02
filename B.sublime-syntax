@@ -1,0 +1,14 @@
+%YAML 1.2
+---
+# http://ben-kiki.org/ypaste/
+# Wilson Farias
+name: B
+file_extensions: [mch, ref, imp]
+first_line_match: ^(MACHINE|
+scope: source.B
+
+contexts:
+  main:
+    - match: \b(if|else|for|while)\b
+    scope: keyword.control.c
+
