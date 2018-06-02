@@ -1,14 +1,38 @@
 %YAML 1.2
 ---
-# http://ben-kiki.org/ypaste/
 # Wilson Farias
+# See http://www.sublimetext.com/docs/3/syntax.html
+# http://ben-kiki.org/ypaste/
+comment: "B Syntax: version 0.1"
 name: B
 file_extensions: [mch, ref, imp]
 first_line_match: (REFINEMENT|IMPLEMENTATION|MACHINE).*
-scope: source.B
+scope: source.b-language
 
 contexts:
+  prototype:
+    # The prototype context is prepended to all contexts but those setting
+    # meta_include_prototype: false.
+    - include: commentLine
+    - include: commentBlock
+
   main:
-    - match: \b(if|else|for|while)\b
-    scope: keyword.control.c
+    # The main context is the initial starting point of our syntax.
+    # Include other contexts from here (or specify them directly).
+    - include: keywords
+
+  keywords:
+    # Note that blackslashes don't need to be escaped within single quoted
+    # strings in YAML. When using single quoted strings, only single quotes
+    # need to be escaped: this is done by using two single quotes next to each
+    # other.
+    - match: (?i)\b(machine|constraints|sets|constants|properties|variables|invariant|initialisation|operations|end)\b
+      scope: keyword.control.b-language
+
+
+# - name: comment.block.b
+#  begin: /*
+#  end: */
+#  captures:
+#    '0': {name: ponctuation.definition.comment.b}
 
